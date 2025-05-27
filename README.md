@@ -1,1 +1,1 @@
-# GIS
+# GIS Final Project on Deforestation
