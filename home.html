@@ -49,6 +49,57 @@
         </div>
     </section>
 
+    <script>
+  const hero = document.querySelector('.hero');
+  const dots = document.querySelectorAll('.dot');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  const prevBtn = document.querySelector('.slider-btn.prev');
+
+  const images = [
+    'images/forest1.jpg',
+    'images/forest2.jpg',
+    'images/forest3.jpg',
+    'images/forest4.jpg'
+  ];
+
+  let currentIndex = 0;
+
+  function updateSlider(index) {
+    currentIndex = index;
+    hero.style.backgroundImage = `url(${images[index]})`;
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  nextBtn.addEventListener('click', () => {
+    let newIndex = (currentIndex + 1) % images.length;
+    updateSlider(newIndex);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    let newIndex = (currentIndex - 1 + images.length) % images.length;
+    updateSlider(newIndex);
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.getAttribute('data-index'));
+      updateSlider(index);
+    });
+  });
+
+  // Auto-slide every 5 seconds
+  setInterval(() => {
+    let newIndex = (currentIndex + 1) % images.length;
+    updateSlider(newIndex);
+  }, 5000);
+
+  // Initial image load
+  updateSlider(currentIndex);
+</script>
+
+
     <!-- Graph Section -->
     <section class="graph-section">
         <div class="content">
